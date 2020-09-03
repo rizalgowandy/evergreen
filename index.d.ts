@@ -9,7 +9,7 @@ import { TransitionProps, TransitionStatus } from 'react-transition-group/Transi
 export { configureSafeHref, BoxProps, BoxOwnProps, BoxComponent, PolymorphicBoxProps, EnhancerProps } from 'ui-box'
 
 export type PositionTypes = 'top' | 'top-left' | 'top-right' | 'bottom' | 'bottom-left' | 'bottom-right' | 'left' | 'right'
-export type IntentTypes = 'none' | 'success' | 'warning' | 'danger'
+export type IntentTypes = 'none' | 'info' | 'success' | 'warning' | 'danger'
 export type DefaultAppearance = 'default'
 export type AlertAppearance = DefaultAppearance | 'card'
 export type ButtonAppearance = DefaultAppearance | 'minimal' | 'primary'
@@ -502,8 +502,8 @@ export interface AvatarOwnProps {
    */
   name?: string | null
   hashValue?: string
-  isSolid?: boolean
   color?: string
+  shape?: 'round' | 'square'
   getInitials?: (name: string) => string
   forceShowInitials?: boolean
   sizeLimitOneCharacter?: number
@@ -1411,17 +1411,17 @@ export interface SegmentedControlOwnProps {
    * The options (elements) displayed by the segmented control
    */
   options: Array<{ label: string, value: NonNullable<SegmentedControlOwnProps['value']> }>
-  
+
   /**
    * The value of the segmented control
    */
   value?: number | string | boolean
-  
+
   /**
    * The initial value of an uncontrolled segmented control
    */
   defaultValue?: number | string | boolean
-  
+
   /**
    * Function called when value changes.
    */
@@ -1629,10 +1629,6 @@ export interface SideSheetProps {
 
 export declare const SideSheet: React.FC<SideSheetProps>
 
-export type SidebarTabOwnProps = TabOwnProps
-export type SidebarTabProps = PolymorphicBoxProps<'span', SidebarTabOwnProps>
-export declare const SidebarTab: BoxComponent<SidebarTabOwnProps, 'span'>
-
 export interface SmallOwnProps {}
 export type SmallProps = PolymorphicBoxProps<'small', SmallOwnProps>
 export declare const Small: BoxComponent<SmallOwnProps, 'small'>
@@ -1667,6 +1663,15 @@ export const StackingOrder: {
   OVERLAY: number
   TOASTER: number
 }
+
+export interface StatusIndicatorOwnProps extends TextOwnProps {
+  disabled?: boolean
+  color?: IntentTypes | string
+  dotSize?: number
+}
+
+export type StatusIndicatorProps = PolymorphicBoxProps<'span', StatusIndicatorOwnProps>
+export declare const StatusIndicator: BoxComponent<StatusIndicatorOwnProps, 'span'>
 
 export type StrongOwnProps = TextOwnProps
 export type StrongProps = PolymorphicBoxProps<'strong', StrongOwnProps>
@@ -1951,7 +1956,8 @@ export interface TabOwnProps extends TextOwnProps {
    * The appearance of the tab.
    * The default theme only comes with a default style.
    */
-  appearance?: DefaultAppearance
+  appearance?: "primary" | "secondary"
+  direction?: "vertical" | "horizontal"
 }
 
 export type TabProps = PolymorphicBoxProps<'span', TabOwnProps>
