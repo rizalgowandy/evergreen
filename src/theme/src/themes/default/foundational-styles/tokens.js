@@ -300,11 +300,42 @@ export default {
   selectedOptionColor: colors.blue500,
   // Border radius used across input components
   borderRadius: 4,
+  focus: {
+    width: 2,
+    color: colors.blue100,
+    destructiveColor: colors.red100
+  },
   primary: {
     base: colors.blue500,
     hover: colors.blue600,
     active: colors.blue700,
-    disabled: colors.blue100
+    disabled: colors.blue100,
+    border: colors.blue500,
+    text: 'white'
+  },
+  default: {
+    base: 'white',
+    hover: colors.gray50,
+    borderDarker: colors.gray600,
+    border: colors.gray500,
+    text: colors.gray800,
+    active: colors.gray100,
+    disabled: colors.gray400
+  },
+  destructive: {
+    base: colors.red500,
+    border: colors.red500,
+    hover: colors.red600,
+    active: colors.red700,
+    disabled: colors.red100,
+    text: 'white'
+  },
+  minimal: {
+    base: 'transparent',
+    text: colors.gray800,
+    hover: colors.gray100,
+    active: colors.gray200,
+    disabled: colors.gray50
   },
   intents: {
     info: {

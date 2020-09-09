@@ -216,24 +216,25 @@ buttonsStory.add('Button types', () => {
           ...defaultTheme,
           buttons: {
             appearances: {
-              minimalDanger: {
-                backgroundColor: 'transparent',
-                color: defaultTheme.tokens.colors.red500,
-
-                _focus: {
+              'minimal-danger': {
+                base: {
+                  background: 'transparent',
+                  color: defaultTheme.tokens.colors.red500
+                },
+                focus: {
                   boxShadow: `0 0 0 2px ${defaultTheme.tokens.colors.blue100}`
                 },
 
-                _disabled: {
+                disabled: {
                   color: defaultTheme.tokens.colors.gray500,
                   borderColor: defaultTheme.tokens.colors.gray300
                 },
 
-                _hover: {
+                hover: {
                   backgroundColor: defaultTheme.tokens.colors.gray100
                 },
 
-                _active: {
+                active: {
                   backgroundColor: defaultTheme.tokens.colors.gray200
                 }
               }
@@ -255,7 +256,7 @@ buttonsStory.add('Button types', () => {
           <Button appearance="minimal" marginRight={16} intent="warning">
             Minimal
           </Button>
-          <Button appearance="minimalDanger" marginRight={16}>
+          <Button appearance="minimal-danger" marginRight={16}>
             Minimal Danger
           </Button>
         </Box>
