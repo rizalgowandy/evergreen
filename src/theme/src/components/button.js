@@ -114,12 +114,14 @@ export default function getButtonStyles(theme) {
           'buttons.default.background',
           tokens.default.base
         ),
-        border: `1px solid ${get(
-          theme,
-          'buttons.default.border',
-          tokens.default.border
-        )}`,
-        color: get(theme, 'buttons.default.border', tokens.default.text),
+        border: tokens.default.border
+          ? `1px solid ${get(
+              theme,
+              'buttons.default.border',
+              tokens.default.border
+            )}`
+          : null,
+        color: get(theme, 'buttons.default.text', tokens.default.text),
 
         _disabled: {
           ...disabled,

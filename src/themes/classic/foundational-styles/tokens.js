@@ -1,3 +1,6 @@
+import { defaultControlStyles } from '../shared'
+import { getPrimaryButtonStylesForIntent } from '../helpers'
+
 const colorTokens = {
   // Grays / neutrals
   gray900: '#101840',
@@ -284,10 +287,42 @@ export default {
   selectedOptionColor: colors.blue500,
   // Border radius used across input components
   borderRadius: 4,
+  focus: {
+    width: 1,
+    color: colors.blue100,
+    destructiveColor: colors.red100
+  },
   primary: {
-    base: colors.blue500,
-    hover: colors.blue600,
-    active: colors.blue700
+    base: getPrimaryButtonStylesForIntent().linearGradient.base,
+    hover: getPrimaryButtonStylesForIntent().linearGradient.hover,
+    active: getPrimaryButtonStylesForIntent().linearGradient.active,
+    disabled: colors.blue100,
+    border: colors.blue500,
+    text: 'white'
+  },
+  default: {
+    base: defaultControlStyles.base.backgroundImage,
+    hover: defaultControlStyles.hover.backgroundImage,
+    borderDarker: colors.gray500,
+    border: colors.gray500,
+    text: colors.gray800,
+    active: defaultControlStyles.active.backgroundColor,
+    disabled: defaultControlStyles.disabled.backgroundImage
+  },
+  destructive: {
+    base: colors.red500,
+    border: colors.red500,
+    hover: colors.red600,
+    active: colors.red700,
+    disabled: colors.red100,
+    text: 'white'
+  },
+  minimal: {
+    base: 'transparent',
+    text: colors.gray800,
+    hover: colors.gray100,
+    active: colors.gray200,
+    disabled: colors.gray50
   },
   intents: {
     info: {

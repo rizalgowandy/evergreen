@@ -48,22 +48,7 @@ const checkedStyle = {
  * @return {Object} the appearance of the checkbox.
  */
 const getCheckboxStyles = theme => {
-  const {
-    tokens: { primary, colors },
-    checkbox
-  } = theme
-
-  const {
-    base: baseStyles = {},
-    disabled: disabledStyles = {},
-    hover: hoverStyles = {},
-    focus: focusStyles = {},
-    active: activeStyles = {},
-    checked: checkedStyles = {},
-    checkedHover: checkedHoverStyles = {},
-    checkedDisabled: checkedDisabledStyles = {},
-    checkedActive: checkedActiveStyles = {}
-  } = checkbox || {}
+  const { tokens } = theme
 
   return {
     ...hiddenCheckboxStyle,
@@ -71,55 +56,47 @@ const getCheckboxStyles = theme => {
     [defaultState]: {
       ...baseStyle,
       color: 'white',
-      backgroundColor: 'white',
-      boxShadow: `inset 0 0 0 1px ${colors.gray400}`,
-      ...baseStyles
+      background: 'white',
+      border: `1px solid ${tokens.colors.gray400}`
     },
     [disabledState]: {
       cursor: 'not-allowed',
-      backgroundColor: colors.gray100,
-      boxShadow: `inset 0 0 0 1px ${colors.gray100}`,
-      ...disabledStyles
+      background: tokens.colors.gray100,
+      border: `1px solid ${tokens.colors.gray100}`
     },
     [hoverState]: {
-      boxShadow: `inset 0 0 0 1px ${colors.gray600}`,
-      ...hoverStyles
+      border: `1px solid ${tokens.colors.gray600}`
     },
     [focusState]: {
-      boxShadow: `0 0 0 2px ${colors.blue100}`,
-      ...focusStyles
+      boxShadow: `0 0 0 ${tokens.focus.width}px ${tokens.focus.color}`
     },
     [activeState]: {
-      backgroundColor: colors.gray100,
-      boxShadow: `inset 0 0 0 1px ${colors.gray500}`,
-      ...activeStyles
+      background: tokens.colors.gray100,
+      border: `1px solid ${tokens.colors.gray500}`
     },
     [checkedState]: {
       ...checkedStyle,
-      color: 'white',
-      boxShadow: `inset 0 0 0 -1px ${primary.active}`,
-      backgroundColor: primary.base,
-      ...checkedStyles
+      color: tokens.primary.text,
+      border: `1px solid ${tokens.primary.border}`,
+      background: tokens.primary.base
     },
     [checkedHoverState]: {
       ...checkedStyle,
       color: 'white',
-      backgroundColor: primary.hover,
-      boxShadow: `inset 0 0 0 1px ${primary.hover}`,
-      ...checkedHoverStyles
+      background: tokens.primary.hover,
+      border: `1px solid ${tokens.primary.hover}`
     },
     [checkedDisabledState]: {
       ...checkedStyle,
-      color: colors.gray600,
-      backgroundColor: colors.gray100,
-      ...checkedDisabledStyles
+      color: tokens.colors.gray600,
+      background: tokens.colors.gray100,
+      border: `1px solid ${tokens.colors.gray100}`
     },
     [checkedActiveState]: {
       ...checkedStyle,
       color: 'white',
-      boxShadow: `inset 0 0 0 -1px ${primary.active}`,
-      backgroundColor: primary.active,
-      ...checkedActiveStyles
+      border: `1px solid ${tokens.primary.active}`,
+      background: tokens.primary.active
     }
   }
 }

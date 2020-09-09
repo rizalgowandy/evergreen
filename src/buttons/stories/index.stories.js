@@ -8,7 +8,8 @@ import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
 
 import * as Icons from '../../icons'
-import { ThemeProvider, defaultTheme } from '../../theme'
+import { defaultTheme } from '../../themes'
+import { ThemeProvider } from '../../theme'
 import { IconButton, Button, BackButton, TextDropdownButton } from '..'
 
 const buttonsStory = storiesOf('buttons', module)
