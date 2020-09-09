@@ -9,9 +9,6 @@
 
 /**
  * Foundational Styles.
- * ---
- * The following properties are NOT REQUIRED by Evergreen.
- * It's exposed for convenience and documentation.
  */
 import {
   colors,
@@ -24,9 +21,6 @@ import {
 
 /**
  * Typography.
- * ---
- * The following properties are NOT REQUIRED by Evergreen.
- * It's exposed for convenience and documentation.
  */
 import { headings, text, fontFamilies, paragraph } from './typography'
 
@@ -36,13 +30,10 @@ import { headings, text, fontFamilies, paragraph } from './typography'
  * These ARE REQUIRED for Evergreen to work.
  */
 import {
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
   buttons,
-  checkbox,
-  inputs,
-  segmentedControl
+  inputs
 } from './component-specific'
 
 export default {
@@ -54,15 +45,11 @@ export default {
   scales,
   tokens,
 
-  getTableCellClassName,
   getRowClassName,
   getMenuItemClassName,
 
-  // Component-specific
-  buttons,
-  checkbox,
-  segmentedControl,
   inputs,
+  buttons,
 
   typography: {
     headings,
