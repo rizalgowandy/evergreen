@@ -384,8 +384,6 @@ interface Typography {
 }
 
 export interface Theme {
-  avatarColors: string[]
-  badgeColors: string[]
   colors: Colors
   elevations: Elevation[]
   fills: Fills
@@ -395,11 +393,6 @@ export interface Theme {
   spinnerColor: string
   typography: Typography
   getIconColor(color: string): string
-  getAvatarProps(args: {
-    isSolid?: boolean
-    color: string
-    hashValue?: string
-  }): { color: string; backgroundColor: string }
 }
 
 export const defaultTheme: Theme
