@@ -215,6 +215,7 @@ buttonsStory.add('Button types', () => {
         value={{
           ...defaultTheme,
           buttons: {
+            ...defaultTheme.buttons,
             appearances: {
               'minimal-danger': {
                 base: {

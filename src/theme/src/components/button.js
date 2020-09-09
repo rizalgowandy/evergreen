@@ -271,25 +271,25 @@ export default function getButtonStyles(theme) {
     sizes: {
       small: {
         ...tokens.text[300],
-        height: 24,
-        minWidth: 24,
-        lineHeight: '24px',
+        height: get(theme, 'buttons.sizes.small'),
+        minWidth: get(theme, 'buttons.sizes.small'),
+        lineHeight: `${get(theme, 'buttons.sizes.small')}px`,
         paddingLeft: minorScale(3),
         paddingRight: minorScale(3)
       },
       medium: {
         ...tokens.text[300],
-        height: 32,
-        minWidth: 32,
-        lineHeight: '32px',
+        height: get(theme, 'buttons.sizes.medium'),
+        minWidth: get(theme, 'buttons.sizes.medium'),
+        lineHeight: `${get(theme, 'buttons.sizes.medium')}px`,
         paddingLeft: majorScale(2),
         paddingRight: majorScale(2)
       },
       large: {
         ...tokens.text[400],
-        height: 40,
-        minWidth: 40,
-        lineHeight: '40px',
+        height: get(theme, 'buttons.sizes.large'),
+        minWidth: get(theme, 'buttons.sizes.large'),
+        lineHeight: `${get(theme, 'buttons.sizes.large')}px`,
         paddingLeft: minorScale(5),
         paddingRight: minorScale(5)
       }
