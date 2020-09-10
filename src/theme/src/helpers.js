@@ -1,5 +1,4 @@
 import get from 'lodash.get'
-import { readOnly } from 'glamor'
 /**
  * Helper function that, given a theme, resolves
  * any of the references values on the theme. This allows for
