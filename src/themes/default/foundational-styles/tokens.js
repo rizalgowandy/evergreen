@@ -270,15 +270,6 @@ const overlayBackgroundColor = 'rgba(67, 90, 111, 0.7)'
 const codeBackgroundColor = 'rgba(16, 112, 202, 0.06)'
 const codeBorderColor = 'rgba(16, 112, 202, 0.14)'
 
-// Buttons
-const buttonPrimaryColor = colors.blue500
-const buttonPrimaryBorderColor = colors.blue500
-const buttonPrimaryDisabledColor = colors.blue100
-const buttonPrimaryDisabledBorderColor = colors.blue100
-const buttonPrimaryHoverBackground = colors.blue600
-const buttonPrimaryFocusColor = colors.blue600
-const buttonPrimaryActiveColor = colors.blue700
-
 export default {
   colors,
   fontFamilies,
@@ -286,13 +277,6 @@ export default {
   paragraph,
   headings,
   spinnerColor,
-  buttonPrimaryColor,
-  buttonPrimaryBorderColor,
-  buttonPrimaryDisabledColor,
-  buttonPrimaryDisabledBorderColor,
-  buttonPrimaryHoverBackground,
-  buttonPrimaryFocusColor,
-  buttonPrimaryActiveColor,
   overlayBackgroundColor,
   codeBackgroundColor,
   codeBorderColor,
