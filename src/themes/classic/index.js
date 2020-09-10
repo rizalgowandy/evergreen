@@ -33,6 +33,7 @@ import { headings, text, fontFamilies, paragraph } from './typography'
 import {
   getRowClassName,
   getMenuItemClassName,
+  getAlertStyles,
   buttons,
   checkbox,
   inputs,
@@ -48,6 +49,7 @@ export default {
   scales,
   tokens,
 
+  getAlertStyles,
   getRowClassName,
   getMenuItemClassName,
 

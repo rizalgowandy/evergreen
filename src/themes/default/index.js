@@ -33,7 +33,8 @@ import {
   getRowClassName,
   getMenuItemClassName,
   buttons,
-  inputs
+  inputs,
+  getAlertStyles
 } from './component-specific'
 
 export default {
@@ -48,6 +49,7 @@ export default {
   getRowClassName,
   getMenuItemClassName,
 
+  getAlertStyles,
   inputs,
   buttons,
 
