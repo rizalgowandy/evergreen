@@ -55,9 +55,9 @@ const getCheckboxStyles = theme => {
     '& + div > svg': { display: 'none' },
     [defaultState]: {
       ...baseStyle,
-      color: 'white',
-      background: 'white',
-      border: `1px solid ${tokens.colors.gray400}`
+      color: tokens.default.text,
+      background: tokens.default.base,
+      border: `1px solid ${tokens.default.border}`
     },
     [disabledState]: {
       cursor: 'not-allowed',
@@ -65,7 +65,8 @@ const getCheckboxStyles = theme => {
       border: `1px solid ${tokens.colors.gray100}`
     },
     [hoverState]: {
-      border: `1px solid ${tokens.colors.gray600}`
+      background: tokens.default.hover,
+      border: `1px solid ${tokens.default.borderDarker}`
     },
     [focusState]: {
       boxShadow: `0 0 0 ${tokens.focus.width}px ${tokens.focus.color}`
@@ -84,7 +85,7 @@ const getCheckboxStyles = theme => {
       ...checkedStyle,
       color: 'white',
       background: tokens.primary.hover,
-      border: `1px solid ${tokens.primary.hover}`
+      border: `1px solid ${tokens.primary.border}`
     },
     [checkedDisabledState]: {
       ...checkedStyle,

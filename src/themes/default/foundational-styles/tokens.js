@@ -300,6 +300,8 @@ export default {
   selectedOptionColor: colors.blue500,
   // Border radius used across input components
   borderRadius: 4,
+  // Focus ring used
+  focusRing: `0 0 0 2px ${colors.blue100}`,
   focus: {
     width: 2,
     color: colors.blue100,
