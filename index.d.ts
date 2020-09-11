@@ -515,7 +515,6 @@ export interface BadgeOwnProps extends StrongOwnProps {
    * Whether or not to apply hover/focus/active styles.
    */
   isInteractive?: boolean
-  isSolid?: boolean
 }
 
 export type BadgeProps = PolymorphicBoxProps<'strong', BadgeOwnProps>
