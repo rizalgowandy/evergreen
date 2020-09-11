@@ -43,9 +43,9 @@ const AutocompleteItems = ({
   highlightedIndex,
   inputValue,
   isFilterDisabled,
-  itemsFilter,
   itemSize,
   itemToString,
+  itemsFilter,
   originalItems,
   popoverMaxHeight,
   renderItem,
@@ -157,13 +157,13 @@ const Autocomplete = memo(
         {...restProps}
       >
         {({
-          isOpen: isShown,
-          inputValue,
           getItemProps,
           getMenuProps,
-          selectedItem,
-          highlightedIndex,
           getRootProps,
+          highlightedIndex,
+          inputValue,
+          isOpen: isShown,
+          selectedItem,
           ...restDownshiftProps
         }) => (
           <div style={{ width: '100%' }}>
@@ -198,7 +198,7 @@ const Autocomplete = memo(
               minHeight={0}
               animationDuration={0}
             >
-              {({ isShown: isShownPopover, toggle, getRef }) =>
+              {({ getRef, isShown: isShownPopover, toggle }) =>
                 children({
                   isShown: isShownPopover,
                   toggle,

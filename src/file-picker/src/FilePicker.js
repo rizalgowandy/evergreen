@@ -11,17 +11,17 @@ export const CLASS_PREFIX = 'evergreen-file-picker'
 const FilePicker = memo(
   forwardRef(function FilePicker(props, ref) {
     const {
-      name,
       accept,
-      required,
-      multiple,
-      onBlur,
-      disabled,
       capture,
+      className,
+      disabled,
       height,
+      multiple,
+      name,
+      onBlur,
       onChange,
       placeholder = 'Select a file to upload…',
-      className,
+      required,
       ...rest
     } = props
 

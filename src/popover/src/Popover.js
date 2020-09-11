@@ -294,7 +294,7 @@ const Popover = memo(
         onOpenComplete={handleOpenComplete}
         onCloseComplete={onCloseComplete}
       >
-        {({ css, style, state, getRef }) => (
+        {({ css, getRef, state, style }) => (
           <PopoverStateless
             ref={ref => {
               setPopoverNode(ref)

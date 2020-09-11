@@ -8,19 +8,19 @@ import { CaretDownIcon } from '../../icons'
 
 const Combobox = memo(function Combobox(props) {
   const {
-    items,
-    selectedItem,
-    initialSelectedItem,
-    itemToString,
-    width = 240,
-    height,
-    onChange,
-    placeholder,
-    inputProps,
-    buttonProps,
-    openOnFocus = false,
     autocompleteProps,
+    buttonProps,
+    height,
+    initialSelectedItem,
+    inputProps,
     isLoading = false,
+    itemToString,
+    items,
+    onChange,
+    openOnFocus = false,
+    placeholder,
+    selectedItem,
+    width = 240,
     ...rest
   } = props
 
@@ -55,13 +55,13 @@ const Combobox = memo(function Combobox(props) {
       onStateChange={handleStateChange}
     >
       {({
-        getRef,
-        isShown,
-        openMenu,
-        inputValue,
+        clearSelection,
         getInputProps,
+        getRef,
         getToggleButtonProps,
-        clearSelection
+        inputValue,
+        isShown,
+        openMenu
       }) => (
         <Box ref={getRef} display="inline-flex" width={width} {...rest}>
           <TextInput

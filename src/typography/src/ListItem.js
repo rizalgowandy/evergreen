@@ -6,7 +6,7 @@ import Text from './Text'
 
 const ListItem = memo(
   forwardRef(function ListItem(props, ref) {
-    const { children, size, icon, iconColor, ...rest } = props
+    const { children, icon, iconColor, size, ...rest } = props
 
     let paddingLeft
     if (size === 300) paddingLeft = minorScale(1)

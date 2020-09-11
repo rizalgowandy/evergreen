@@ -10,25 +10,21 @@ const TextareaField = memo(
     const id = useId('TextareaField', props.id)
 
     const {
-      // We are using the id from the state
+      appearance,
+      description,
+      disabled,
+      hint,
       id: unusedId,
 
-      // FormField props
-      hint,
-      label,
-      description,
-      validationMessage,
-
-      // Textarea props
       inputHeight = 80,
       /** The input width should be as wide as the form field. */
       inputWidth = '100%',
-      disabled,
-      required,
       isInvalid,
-      appearance,
+      label,
       placeholder,
+      required,
       spellCheck,
+      validationMessage,
 
       // Rest props are spread on the FormField
       ...rest
