@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
-import cx from 'classnames'
 import React, { forwardRef, memo } from 'react'
+import cx from 'classnames'
+import PropTypes from 'prop-types'
 import safeInvoke from '../../lib/safe-invoke'
 import warning from '../../lib/warning'
 import useTabApperance from '../../theme/src/hooks/useTabApperance'
@@ -73,15 +73,9 @@ const Tab = memo(
       }
     }
 
-    const classNames = cx(theme.getTabClassName(appearance), className)
-
     return (
       <Text
-<<<<<<< HEAD
-        className={classNames}
-=======
-        className={tabClassName}
->>>>>>> V6 theme (#968)
+        className={cx(tabClassName, className)}
         is={is}
         size={300}
         height={height}
@@ -122,17 +116,13 @@ Tab.propTypes = {
    * The directionality of the tab.
    * If the tab is apart of a vertical or horizontal list
    */
-<<<<<<< HEAD
-  appearance: PropTypes.string,
+  direction: PropTypes.oneOf(['horizontal', 'vertical']),
 
   /**
    * Class name passed to the Tab.
    * Only use this if you know what you are doing.
    */
   className: PropTypes.string
-=======
-  direction: PropTypes.oneOf(['horizontal', 'vertical'])
->>>>>>> V6 theme (#968)
 }
 
 export default Tab
