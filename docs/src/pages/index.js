@@ -6,7 +6,6 @@ import PageFooter from '../components/PageFooter'
 import Features from '../components/Features'
 import HomeHero from '../components/HomeHero'
 import Media from '../components/Media'
-import { ThemeProvider, classicTheme } from '../../../src'
 import figmaDesignSystems from '../images/design-systems-com.png'
 import growingADesignSystem from '../images/growing-a-design-system.png'
 import drivingAdoption from '../images/driving-adoption-of-a-design-system.png'
@@ -41,22 +40,20 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <ThemeProvider value={classicTheme}>
-        <Layout>
-          <Helmet>
-            <title>Evergreen</title>
-          </Helmet>
-          <div>
-            <TopBar />
-            <main>
-              <HomeHero />
-              <Features />
-              <Media title="Evergreen Related Media" items={mediaItems} />
-            </main>
-          </div>
-          <PageFooter />
-        </Layout>
-      </ThemeProvider>
+      <Layout>
+        <Helmet>
+          <title>Evergreen</title>
+        </Helmet>
+        <div>
+          <TopBar />
+          <main>
+            <HomeHero />
+            <Features />
+            <Media title="Evergreen Related Media" items={mediaItems} />
+          </main>
+        </div>
+        <PageFooter />
+      </Layout>
     )
   }
 }
