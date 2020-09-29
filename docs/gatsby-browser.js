@@ -1,3 +1,7 @@
+/* eslint-disable no-restricted-globals */
+import React from 'react'
+import { ThemeProvider, classicTheme } from '../src'
+
 const { NODE_ENV = 'development' } = process.env
 
 export const onClientEntry = () => {
@@ -8,6 +12,10 @@ export const onClientEntry = () => {
     top.location = self.location
   }
 }
+
+export const wrapRootElement = ({ element }) => (
+  <ThemeProvider value={classicTheme}>{element}</ThemeProvider>
+)
 
 export const onRouteUpdate = () => {
   if (!window.analytics || typeof window.analytics.page !== 'function') {

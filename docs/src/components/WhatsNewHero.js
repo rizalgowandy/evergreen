@@ -1,13 +1,13 @@
 import React from 'react'
-import { Heading, Paragraph, Pane, Button, useTheme, Badge } from '../../../src'
+import { Heading, Paragraph, Pane, useTheme, Button, Badge } from '../../../src'
 import GitHubIcon from './GitHubIcon'
 
 const WhatsNewHero = () => {
-  const theme = useTheme()
-
   const trackViewChangelog = () => {
     window.analytics.track('Clicked view Changelog')
   }
+
+  const theme = useTheme()
 
   return (
     <Pane
