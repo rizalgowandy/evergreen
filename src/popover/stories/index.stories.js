@@ -2,6 +2,7 @@ import { storiesOf } from '@storybook/react'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from 'ui-box'
+import { majorScale, TextareaField, IconButton, EditIcon } from '../..'
 import { Tooltip } from '../../tooltip'
 import { TextInputField } from '../../text-input'
 import { Pane } from '../../layers'
@@ -263,3 +264,58 @@ storiesOf('popover', module)
       </Popover>
     </Box>
   ))
+  .add('Wrapper component with Popover and render function reference', () => {
+    class TestCase extends React.Component {
+      state = {
+        currentValue: ''
+      }
+
+      handleChange = e => {
+        this.setState({
+          currentValue: e.target.value
+        })
+      }
+
+      renderContent = ({ close }) => {
+        const handler = e => {
+          e.preventDefault()
+          close()
+        }
+
+        return (
+          <Pane is="form" padding={majorScale(3)} onSubmit={handler}>
+            <TextareaField
+              value={this.state.currentValue}
+              label="Edit some feedback"
+              onChange={this.handleChange}
+            />
+            <Button type="submit" appearance="primary">
+              Update
+            </Button>
+          </Pane>
+        )
+      }
+
+      render() {
+        return (
+          // Try changing the Pop
+          <Popover minWidth={majorScale(40)} content={this.renderContent}>
+            <Tooltip content="Edit name">
+              <IconButton
+                icon={EditIcon}
+                appearance="minimal"
+                marginLeft={majorScale(1)}
+                height={majorScale(3)}
+              />
+            </Tooltip>
+          </Popover>
+        )
+      }
+    }
+
+    return (
+      <Box padding={40}>
+        <TestCase />
+      </Box>
+    )
+  })
