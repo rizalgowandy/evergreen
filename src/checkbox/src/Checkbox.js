@@ -36,17 +36,14 @@ const noop = () => {}
 
 const pseudoSelectors = {
   _base: '& + div',
-  _disabled: '&[disabled] + div',
-  _hover: '&:not([disabled]):hover + div',
-  _focus: '&:not([disabled]):focus + div',
-  _active: '&:not([disabled]):active + div',
-  _checked: '&:checked + div, &[type=checkbox]:indeterminate + div',
-  _checkedHover:
-    '&:not([disabled]):checked:hover + div, &[type=checkbox]:not([disabled]):indeterminate:hover + div',
-  _checkedActive:
-    '&:not([disabled]):checked:active + div, &[type=checkbox]:not([disabled]):indeterminate:active + div',
-  _checkedDisabled:
-    '&[disabled]:checked + div, &[type=checkbox][disabled]:indeterminate + div'
+  _disabled: '&:disabled + div',
+  _hover: '&:hover + div',
+  _focus: '&:focus + div',
+  _active: '&:active + div',
+  _checked: '&:checked + div, &:indeterminate + div',
+  _checkedHover: '&:checked:hover + div, &:indeterminate:hover + div',
+  _checkedActive: '&:checked:active + div, &:indeterminate:active + div',
+  _checkedDisabled: '&:disabled:checked + div, &:disabled:indeterminate + div'
 }
 
 const internalStyles = {

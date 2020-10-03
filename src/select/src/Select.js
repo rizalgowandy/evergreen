@@ -24,11 +24,11 @@ const internalStyles = {
 }
 
 const pseudoSelectors = {
-  _disabled: '[disabled]',
+  _disabled: '&:disabled',
   _invalid: '&[aria-invalid="true"]',
-  _hover: '&:not([disabled]):hover',
-  _focus: '&:not([disabled]):focus',
-  _active: '&:not([disabled]):active'
+  _hover: '&:hover',
+  _focus: '&:focus',
+  _active: '&:active'
 }
 
 const getIconSizeForSelect = height => {

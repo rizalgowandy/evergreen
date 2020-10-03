@@ -34,6 +34,23 @@ import { useTheme, get, resolveThemeTokens } from '../theme'
  * @property {{ [size: string]: Style }} [sizes]
  */
 
+/**
+ * Order of pseudo classes
+ * @see {@link https://bitsofco.de/when-do-the-hover-focus-and-active-pseudo-classes-apply/#orderofstyleshoverthenfocusthenactive}
+ * @see {@link https://developer.mozilla.org/docs/Web/CSS/:active#Active_links}
+ */
+const PRECEDENCES_BY_PSEUDO_CLASS = new Map([
+  ['_link', 1],
+  ['_visited', 2],
+  ['_empty', 3],
+  ['_focus-within', 4],
+  ['_hover', 5],
+  ['_focus', 6],
+  ['_focus-visible', 7],
+  ['_active', 8],
+  ['_disabled', 9]
+])
+
 function maybeRun(value, ...args) {
   return typeof value === 'function' ? value(...args) : value
 }
@@ -114,17 +131,30 @@ function useGlamorAndBox(styles, pseudoSelectors) {
 
     /** @type {GlamorAndBoxStyle} */
     const glamorStyles = {}
+    const orderedStyles = [glamorStyles]
+
+    PRECEDENCES_BY_PSEUDO_CLASS.forEach((_order, pseudo) => {
+      const styles = remainingProps[pseudo]
+      if (pseudo in pseudoSelectors && styles) {
+        orderedStyles.push({
+          [pseudoSelectors[pseudo]]: styles
+        })
+      }
+    })
 
     // Swap out pseudo selector placeholders for their actual css selector strings
     for (const k of Object.keys(remainingProps)) {
       const key = k in pseudoSelectors ? pseudoSelectors[k] : k
-      glamorStyles[key] = remainingProps[k]
+      // Ignore styles that are already in `orderedStyles`
+      if (!PRECEDENCES_BY_PSEUDO_CLASS.has(k)) {
+        glamorStyles[key] = remainingProps[k]
+      }
     }
 
-    // Take all the "non-compatible" props and give those to glamor (since ui-box doesn't know how to handle them yet)
-    if (!isEqual(glamorStylesRef.current, glamorStyles)) {
-      glamorStylesRef.current = glamorStyles
-      classNameRef.current = css(glamorStyles).toString()
+    // Take all the 'non-compatible' props and give those to glamor (since ui-box doesn't know how to handle them yet)
+    if (!isEqual(glamorStylesRef.current, orderedStyles)) {
+      glamorStylesRef.current = orderedStyles
+      classNameRef.current = css(...orderedStyles).toString()
     }
 
     return {

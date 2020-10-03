@@ -82,7 +82,6 @@ type ButtonPseudoSelectors =
   | '_active'
   | '_disabled'
   | '_focus'
-  | '_focusAndActive'
   | '_hover'
   | '_disabled'
 

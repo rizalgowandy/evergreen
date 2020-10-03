@@ -40,8 +40,7 @@ const appearances = {
     _active: {
       backgroundImage: (_, props) =>
         getPrimaryButtonStylesForIntent(props.intent).linearGradient.active
-    },
-    _focusAndActive: {}
+    }
   },
 
   default: {

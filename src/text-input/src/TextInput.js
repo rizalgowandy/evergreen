@@ -9,10 +9,8 @@ import { useTheme } from '../../theme'
 const pseudoSelectors = {
   _focus: '&:focus',
   _disabled: '&:disabled',
-  _invalid: '&[aria-invalid="true"]:not(:focus)',
-  _placeholder: '&::placeholder',
-  _placeholderHover: '&:hover::placeholder',
-  _placeholderFocus: '&:focus::placeholder'
+  _invalid: '&[aria-invalid="true"]',
+  _placeholder: '&::placeholder'
 }
 
 const internalStyles = {
