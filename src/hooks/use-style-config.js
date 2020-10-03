@@ -154,7 +154,8 @@ function useGlamorAndBox(styles, pseudoSelectors) {
     // Take all the 'non-compatible' props and give those to glamor (since ui-box doesn't know how to handle them yet)
     if (!isEqual(glamorStylesRef.current, orderedStyles)) {
       glamorStylesRef.current = orderedStyles
-      classNameRef.current = css(...orderedStyles).toString()
+      const className = css(...orderedStyles).toString()
+      classNameRef.current = className === 'css-nil' ? undefined : className
     }
 
     return {

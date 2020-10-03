@@ -2,17 +2,17 @@
 
 exports[`<Alert /> appearance snapshot 1`] = `
 <div
-  className="css-1f4h84s css-nil ub-bs_17bru36 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-box-szg_border-box"
+  className="css-1f4h84s ub-bs_17bru36 ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-bblr_3px ub-bbrr_3px ub-btlr_3px ub-btrr_3px ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -32,7 +32,7 @@ exports[`<Alert /> appearance snapshot 1`] = `
       </h4>
     </div>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="ub-pl_34px ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -40,17 +40,17 @@ exports[`<Alert /> appearance snapshot 1`] = `
 
 exports[`<Alert /> basic snapshot 1`] = `
 <div
-  className="css-1f4h84s css-nil ub-bs_dn7fs ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-box-szg_border-box"
+  className="css-1f4h84s ub-bs_dn7fs ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="css-1qmfd78 ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -70,7 +70,7 @@ exports[`<Alert /> basic snapshot 1`] = `
       </h4>
     </div>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="ub-pl_34px ub-box-szg_border-box"
     />
   </div>
 </div>
@@ -78,17 +78,17 @@ exports[`<Alert /> basic snapshot 1`] = `
 
 exports[`<Alert /> intent snapshot 1`] = `
 <div
-  className="css-qomzub css-nil ub-bs_dn7fs ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-box-szg_border-box"
+  className="css-qomzub ub-bs_dn7fs ub-pst_relative ub-ovflw-x_hidden ub-ovflw-y_hidden ub-dspl_flex ub-pb_15px ub-pl_15px ub-pr_15px ub-pt_15px ub-bg-clr_white ub-color_234361 ub-box-szg_border-box"
   role="alert"
 >
   <div
-    className="css-nil ub-flx_1 ub-box-szg_border-box"
+    className="ub-flx_1 ub-box-szg_border-box"
   >
     <div
-      className="css-nil ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+      className="ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
     >
       <div
-        className="css-nil ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
+        className="ub-mr_16px ub-ml_2px ub-dspl_flex ub-algn-itms_center ub-box-szg_border-box"
       >
         <svg
           className="css-neu3kn ub-w_16px ub-h_16px ub-box-szg_border-box"
@@ -108,7 +108,7 @@ exports[`<Alert /> intent snapshot 1`] = `
       </h4>
     </div>
     <div
-      className="css-nil ub-pl_34px ub-box-szg_border-box"
+      className="ub-pl_34px ub-box-szg_border-box"
     />
   </div>
 </div>
