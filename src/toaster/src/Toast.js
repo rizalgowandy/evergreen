@@ -11,6 +11,7 @@ import PropTypes from 'prop-types'
 import { Transition } from 'react-transition-group'
 import Box from 'ui-box'
 import Alert from '../../alert/src/Alert'
+import { Portal } from '../../portal'
 
 const animationEasing = {
   deceleration: 'cubic-bezier(0.0, 0.0, 0.2, 1)',

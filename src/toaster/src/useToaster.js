@@ -1,24 +1,38 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useCallback, useState } from 'react'
 import { css } from 'glamor'
-import PropTypes from 'prop-types'
 import { StackingOrder } from '../../constants'
+import Portal from '../../portal/src/Portal'
 import Toast from './Toast'
 
 const wrapperClass = css({
   maxWidth: 560,
   margin: '0 auto',
-  bottom: 0,
+  top: 0,
   left: 0,
+  right: 0,
   position: 'fixed',
   zIndex: StackingOrder.TOASTER,
   pointerEvents: 'none'
 })
 
-const hasCustomId = settings => Object.hasOwnProperty.call(settings, 'id')
+const hasCustomId = settings =>
+  settings && Object.hasOwnProperty.call(settings, 'id')
 
-const ToastManager = memo(function ToastManager(props) {
-  const { bindCloseAll, bindGetToasts, bindNotify, bindRemove } = props
+const ToastContainer = memo(({ removeToast, toasts }) => (
+  <Portal>
+    <span className={wrapperClass}>
+      {toasts.map(({ description, id, ...rest }) => {
+        return (
+          <Toast key={id} onRemove={() => {}} {...rest}>
+            {description}
+          </Toast>
+        )
+      })}
+    </span>
+  </Portal>
+))
 
+const useToaster = (position = 'BOTTOM') => {
   const [toasts, setToasts] = useState([])
   const [idCounter, setIdCounter] = useState(0)
 
@@ -79,54 +93,33 @@ const ToastManager = memo(function ToastManager(props) {
     }
   }
 
-  const notify = (title, settings) => {
-    let tempToasts = toasts
-    if (hasCustomId(settings)) {
-      tempToasts = removeToast(settings.id)
-    }
-
+  const notify = useCallback((title, settings = {}) => {
     const instance = createToastInstance(title, settings)
-    setToasts([instance, ...tempToasts])
-  }
+    setToasts(prevToasts => [instance, ...prevToasts])
+  }, [])
 
-  bindNotify(notify)
-  bindRemove(safeCloseToast)
-  bindGetToasts(getToasts)
-  bindCloseAll(closeAll)
+  const success = (title, settings) =>
+    notify(title, { ...settings, intent: 'success' })
+  const warn = (title, settings) =>
+    notify(title, { ...settings, intent: 'warn' })
+  const error = (title, settings) =>
+    notify(title, { ...settings, intent: 'error' })
 
-  return (
-    <span className={wrapperClass}>
-      {toasts.map(({ description, id, ...rest }) => {
-        return (
-          <Toast key={id} onRemove={() => removeToast(id)} {...rest}>
-            {description}
-          </Toast>
-        )
-      })}
-    </span>
+  const PassedDownToastContainer = React.cloneElement(
+    ToastContainer,
+    {
+      ...ToastContainer.props,
+      toasts,
+      position
+    },
+    removeToast
   )
-})
 
-ToastManager.propTypes = {
-  /**
-   * Function called with the `this.notify` function.
-   */
-  bindNotify: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.remove` function.
-   */
-  bindRemove: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.getToasts` function.
-   */
-  bindGetToasts: PropTypes.func.isRequired,
-
-  /**
-   * Function called with the `this.closeAll` function.
-   */
-  bindCloseAll: PropTypes.func.isRequired
+  return [
+    ToastContainer,
+    toasts,
+    { notify, success, warn, error, closeAll, getToasts }
+  ]
 }
 
-export default ToastManager
+export default useToaster
