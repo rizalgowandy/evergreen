@@ -13,6 +13,7 @@ import Heading from './heading'
 import Icon from './icon'
 import InlineAlert from './inline-alert'
 import Input from './input'
+import Label from './label'
 import Link from './link'
 import List from './list'
 import MenuItem from './menu-item'
@@ -24,6 +25,7 @@ import Select from './select'
 import Spinner from './spinner'
 import Switch from './switch'
 import Tab from './tab'
+import Table from './table'
 import TableCell from './table-cell'
 import TableHead from './table-head'
 import TableRow from './table-row'
@@ -48,6 +50,7 @@ export default {
   Icon,
   InlineAlert,
   Input,
+  Label,
   List,
   Link,
   MenuItem,
@@ -59,6 +62,7 @@ export default {
   Spinner,
   Switch,
   Tab,
+  Table,
   TableCell,
   TableHead,
   TableRow,

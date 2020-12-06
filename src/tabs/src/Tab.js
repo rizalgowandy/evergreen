@@ -10,6 +10,7 @@ const noop = () => {}
 
 const getInternalStyles = direction => ({
   alignItems: 'center',
+  justifyContent: direction === 'horizontal' ? 'center' : 'flex-start',
   textDecoration: 'none',
   cursor: 'pointer',
   outline: 'none',
