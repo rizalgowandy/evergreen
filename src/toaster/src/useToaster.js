@@ -32,7 +32,7 @@ const ToastContainer = memo(({ removeToast, toasts }) => (
   </Portal>
 ))
 
-const useToaster = (position = 'BOTTOM') => {
+const useToaster = (position = 'TOP') => {
   const [toasts, setToasts] = useState([])
   const [idCounter, setIdCounter] = useState(0)
 
