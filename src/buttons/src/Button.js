@@ -41,6 +41,7 @@ export const internalStyles = {
   outline: 'none',
   userSelect: 'none',
   cursor: 'pointer',
+  paddingY: 0,
   whiteSpace: 'nowrap',
   WebkitFontSmoothing: 'antialiased',
   WebkitAppearance: 'none',
