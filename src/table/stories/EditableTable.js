@@ -4,6 +4,7 @@ import { Table } from '..'
 import { Pane } from '../../layers'
 import { SegmentedControl } from '../../segmented-control'
 import { Stack } from '../../stack'
+import { Switch } from '../../switch'
 
 const range = N => Array.from({ length: N }, (v, k) => k + 1)
 
@@ -32,7 +33,8 @@ const users = range(100).map(index => {
 export default class EditableTable extends React.PureComponent {
   state = {
     users,
-    isSelectable: true
+    isSelectable: true,
+    showEven: true
   }
 
   handleChange = (id, key, value) => {
@@ -72,6 +74,10 @@ export default class EditableTable extends React.PureComponent {
   }
 
   render() {
+    const renderedUsers = this.state.users.filter(user =>
+      this.state.showEven ? user.id % 2 === 0 : user.id % 2 !== 0
+    )
+
     return (
       <Stack>
         {zIndex => {
@@ -89,6 +95,14 @@ export default class EditableTable extends React.PureComponent {
                 value={this.state.isSelectable}
                 onChange={value => this.setState({ isSelectable: value })}
               />
+              <Switch
+                marginBottom={16}
+                checked={this.state.showEven}
+                onChange={e => {
+                  this.setState({ showEven: e.target.checked })
+                }}
+              />
+
               <Pane
                 height="80vh"
                 display="flex"
@@ -117,7 +131,7 @@ export default class EditableTable extends React.PureComponent {
                     <Table.TextHeaderCell>Notes</Table.TextHeaderCell>
                   </Table.Head>
                   <Table.VirtualBody flex={1} overscanCount={15}>
-                    {this.state.users.map(user => {
+                    {renderedUsers.map(user => {
                       return (
                         <Table.Row key={user.id}>
                           <Table.EditableCell
