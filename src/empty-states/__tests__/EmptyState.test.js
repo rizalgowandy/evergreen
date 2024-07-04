@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import { LockIcon } from '../../icons'
 import { defaultTheme } from '../../themes'
+import { Text } from '../../typography/index'
 import SmallExample from '../fixtures/SmallExample'
 import SmallMinimalExample from '../fixtures/SmallMinimalExample'
 import EmptyState from '../src/EmptyState'
@@ -12,8 +13,8 @@ describe('Empty States', () => {
       render(
         <EmptyState
           title="My Empty States"
-          icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-          iconBgColor={defaultTheme.tokens.colors.gray200}
+          icon={<LockIcon color={defaultTheme.colors.gray500} />}
+          iconBgColor={defaultTheme.colors.gray200}
         />
       )
     ).not.toThrowError()
@@ -23,8 +24,8 @@ describe('Empty States', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
       />
     )
     expect(getByText('My Empty States')).toBeVisible()
@@ -34,20 +35,32 @@ describe('Empty States', () => {
     const { getByText } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         description="Some description"
       />
     )
     expect(getByText('Some description')).toBeVisible()
   })
 
+  it('should render react component when react component is passed as a description prop', () => {
+    const { getByText } = render(
+      <EmptyState
+        title="My Empty States"
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
+        description={<Text>Example Text</Text>}
+      />
+    )
+    expect(getByText('Example Text')).toBeVisible()
+  })
+
   it('should render primary button when passed in', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         primaryCta={<EmptyState.PrimaryButton>Primary Action</EmptyState.PrimaryButton>}
       />
     )
@@ -58,8 +71,8 @@ describe('Empty States', () => {
     const { getByRole } = render(
       <EmptyState
         title="My Empty States"
-        icon={<LockIcon color={defaultTheme.tokens.colors.gray500} />}
-        iconBgColor={defaultTheme.tokens.colors.gray200}
+        icon={<LockIcon color={defaultTheme.colors.gray500} />}
+        iconBgColor={defaultTheme.colors.gray200}
         anchorCta={
           <EmptyState.LinkButton href="https://segment.com/docs/" target="_blank">
             Link to Documentation

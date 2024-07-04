@@ -1,6 +1,5 @@
 import React, { memo, forwardRef, useRef, useState, useEffect, useImperativeHandle, useCallback, useMemo } from 'react'
-import cx from 'classnames'
-import { css as glamorCss } from 'glamor'
+import merge from 'lodash.merge'
 import PropTypes from 'prop-types'
 import { Position } from '../../constants'
 import { useMergedRef } from '../../hooks'
@@ -40,15 +39,6 @@ const Popover = memo(
     const setPopoverNode = useMergedRef(popoverNode)
     const targetRef = useRef()
     const setTargetRef = useMergedRef(targetRef)
-
-    useImperativeHandle(
-      forwardedRef,
-      () => ({
-        open,
-        close
-      }),
-      [popoverNode.current]
-    )
 
     /**
      * Methods borrowed from BlueprintJS
@@ -137,6 +127,15 @@ const Popover = memo(
       bringFocusBackToTarget()
       onClose()
     }, [setIsShown, bringFocusBackToTarget, onClose, isShown])
+
+    useImperativeHandle(
+      forwardedRef,
+      () => ({
+        open,
+        close
+      }),
+      [open, close]
+    )
 
     // If `props.isShown` is a boolean, treat as a controlled component
     // `open` and `close` should be applied when it changes
@@ -305,9 +304,9 @@ const Popover = memo(
             minWidth={minWidth}
             minHeight={minHeight}
             {...statelessProps}
-            className={cx(statelessProps.className, glamorCss(css, style, statelessProps.style).toString())}
-            // Overwrite `statelessProps.style` since we are including it via className
-            style={undefined}
+            {...css}
+            style={merge({}, style, statelessProps.style)}
+            className={statelessProps.className}
             onMouseLeave={handleCloseHover}
           >
             {contentToRender}
@@ -334,7 +333,11 @@ Popover.propTypes = {
   ]),
 
   /**
-   * When true, the Popover is manually shown.
+   * Controls whether the Popover is shown or not.
+   * - When `true`, the component is always shown, regardless of the click or hover trigger.
+   * - When `false`, the component is never shown, regardless of the click or hover trigger.
+   * - When `undefined`, the component is uncontrolled and the isShown state is handled internally
+   * (i.e. the Popover is shown based on the click or hover trigger)
    */
   isShown: PropTypes.bool,
   /**

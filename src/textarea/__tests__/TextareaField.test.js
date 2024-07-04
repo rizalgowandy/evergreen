@@ -1,6 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { render, fireEvent, screen } from '@testing-library/react'
-import faker from 'faker'
 import { TextareaField } from '..'
 
 const makeTextareaFieldFixture = (props = {}) => (
@@ -143,5 +143,15 @@ describe('TextareaField', () => {
       fireEvent.change(textarea, { target: { value: 'test' } })
       expect(onChange).toHaveBeenCalled()
     })
+  })
+
+  it('Should correctly compose an accessible description from multiple hints', () => {
+    const { getByTestId, getByText } = render(
+      makeTextareaFieldFixture({ description: 'A description.', hint: 'Am hint.', validationMessage: 'Try again.' })
+    )
+    expect(getByText('A description.')).toBeInTheDocument()
+    expect(getByText('Am hint.')).toBeInTheDocument()
+    expect(getByText('Try again.')).toBeInTheDocument()
+    expect(getByTestId('TextareaField')).toHaveAccessibleDescription('A description. Try again. Am hint.')
   })
 })

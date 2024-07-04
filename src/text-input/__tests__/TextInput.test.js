@@ -1,33 +1,40 @@
 import React, { useState } from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { TextInput, TextInputField } from '../'
+import { TextInput } from '../'
+import { mockRef } from '../../test/utils'
+import colors from '../../themes/default/tokens/colors'
 
 function makeTextInputFixture(props = {}) {
   return <TextInput data-testid="input" {...props} />
 }
 
-function makeTextInputFieldFixture(props = {}) {
-  return <TextInputField data-testid="input" label="Name" {...props} />
-}
-
 describe('TextInput', () => {
-  it('Should render without crashing', () => {
+  it('should forward ref to underlying <input />', () => {
+    const ref = mockRef()
+
+    render(makeTextInputFixture({ ref }))
+
+    expect(ref.current).toBeInstanceOf(HTMLInputElement)
+  })
+
+  it('should render without crashing', () => {
     expect(() => render(makeTextInputFixture())).not.toThrow()
   })
 
-  it('Should accept placeholder text', () => {
-    const { getByPlaceholderText } = render(makeTextInputFixture({ placeholder: 'Enter text here' }))
-    expect(getByPlaceholderText('Enter text here')).toBeInTheDocument()
+  it('should accept placeholder text', () => {
+    render(makeTextInputFixture({ placeholder: 'Enter text here' }))
+
+    expect(screen.getByPlaceholderText('Enter text here')).toBeInTheDocument()
   })
 
-  it('Should set an invalid state if `isInvalid` is `true`', () => {
-    const { getByTestId } = render(makeTextInputFixture({ isInvalid: true }))
-    const input = getByTestId('input')
-    expect(input).toHaveAttribute('aria-invalid', 'true')
+  it('should set an invalid state if `isInvalid` is `true`', () => {
+    render(makeTextInputFixture({ isInvalid: true }))
+
+    expect(screen.getByTestId('input')).toHaveAttribute('aria-invalid', 'true')
   })
 
-  it('Should accept an `onChange` handler to be a controlled component', () => {
+  it('should accept an `onChange` handler to be a controlled component', () => {
     function ControlledTextInput() {
       const [value, setValue] = useState('')
       return (
@@ -40,45 +47,54 @@ describe('TextInput', () => {
       )
     }
 
-    const { getByDisplayValue, getByTestId } = render(<ControlledTextInput />)
-    const input = getByTestId('input')
+    render(<ControlledTextInput />)
+    const input = screen.getByTestId('input')
     userEvent.click(input)
+
     expect(document.activeElement).toEqual(input)
     userEvent.type(input, 'Testing')
-    expect(getByDisplayValue('Testing')).toEqual(input)
+    expect(screen.getByDisplayValue('Testing')).toEqual(input)
   })
 
-  it('Should not be interactive if `disabled` is passed in', () => {
-    const { getByDisplayValue, getByTestId } = render(makeTextInputFixture({ disabled: true }))
-    const input = getByTestId('input')
+  it('should not be interactive if `disabled` is passed in', () => {
+    render(makeTextInputFixture({ disabled: true }))
+    const input = screen.getByTestId('input')
     userEvent.type(input, 'Testing')
-    expect(() => getByDisplayValue('Testing')).toThrowError()
-    expect(getByDisplayValue('')).toEqual(input)
-  })
-})
 
-describe('TextInputField', () => {
-  it('Should render without crashing', () => {
-    expect(() => render(makeTextInputFieldFixture())).not.toThrow()
+    expect(() => screen.getByDisplayValue('Testing')).toThrowError()
+    expect(screen.getByDisplayValue('')).toEqual(input)
   })
 
-  it('Should render a required `label` when passed in', () => {
-    const { getByLabelText } = render(makeTextInputFieldFixture())
-    expect(getByLabelText('Name')).toBeInTheDocument()
+  it.each([undefined, 'default'])('should render with gray400 border when appearance is %p', appearance => {
+    render(makeTextInputFixture({ appearance }))
+
+    // For some reason we were applying a border: 1px solid transparent style and then overriding it with
+    // the individual borderColor style, see https://github.com/segmentio/evergreen/issues/1581
+    expect(screen.getByTestId('input')).not.toHaveStyle({
+      borderTop: '1px solid transparent',
+      borderBottom: '1px solid transparent',
+      borderLeft: '1px solid transparent',
+      borderRight: '1px solid transparent'
+    })
+
+    // ui-box splits the borderColor prop into individual sides/styles, so border: colors.gray400
+    // won't pass this test
+    expect(screen.getByTestId('input')).toHaveStyle({
+      borderTopColor: colors.gray400,
+      borderBottomColor: colors.gray400,
+      borderLeftColor: colors.gray400,
+      borderRightColor: colors.gray400
+    })
   })
 
-  it('Should render a `hint` underneath the input', () => {
-    const { getByText } = render(makeTextInputFieldFixture({ hint: 'Enter a value in the input' }))
-    expect(getByText('Enter a value in the input')).toBeInTheDocument()
-  })
+  it('should render with transparent border when appearance is none', () => {
+    render(makeTextInputFixture({ appearance: 'none' }))
 
-  it('Should render an astrix when `required` is passed in', () => {
-    const { getByTitle } = render(makeTextInputFieldFixture({ required: true }))
-    expect(getByTitle('This field is required.')).toBeInTheDocument()
-  })
-
-  it('Should not render a `validationMessage` when passed in', () => {
-    const { getByText } = render(makeTextInputFieldFixture({ validationMessage: 'Please enter a value' }))
-    expect(getByText('Please enter a value')).toBeInTheDocument()
+    expect(screen.getByTestId('input')).toHaveStyle({
+      borderTopColor: 'transparent',
+      borderBottomColor: 'transparent',
+      borderLeftColor: 'transparent',
+      borderRightColor: 'transparent'
+    })
   })
 })

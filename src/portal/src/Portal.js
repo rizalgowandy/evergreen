@@ -1,38 +1,37 @@
-import { Component } from 'react'
+import { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import ReactDOM from 'react-dom'
-import canUseDom from '../../lib/canUseDom'
+import { createPortal } from 'react-dom'
+import { useIsomorphicLayoutEffect } from '../../hooks'
 
-let portalContainer
+// Based on https://github.com/mantinedev/mantine/blob/master/src/mantine-core/src/Portal/Portal.tsx
+const Portal = props => {
+  const { children } = props
 
-export default class Portal extends Component {
-  constructor() {
-    super()
+  const [mounted, setMounted] = useState(false)
+  const ref = useRef()
 
-    // This fixes SSR
-    if (!canUseDom) return
+  useIsomorphicLayoutEffect(() => {
+    setMounted(true)
 
-    if (!portalContainer) {
-      portalContainer = document.createElement('div')
-      portalContainer.setAttribute('evergreen-portal-container', '')
-      document.body.appendChild(portalContainer)
+    ref.current = document.createElement('div')
+    ref.current.setAttribute('evergreen-portal-container', '')
+
+    document.body.appendChild(ref.current)
+
+    return () => {
+      document.body.removeChild(ref.current)
     }
+  }, [])
 
-    this.el = document.createElement('div')
-    portalContainer.appendChild(this.el)
+  if (!mounted) {
+    return null
   }
 
-  componentWillUnmount() {
-    portalContainer.removeChild(this.el)
-  }
-
-  render() {
-    // This fixes SSR
-    if (!canUseDom) return null
-    return ReactDOM.createPortal(this.props.children, this.el)
-  }
+  return createPortal(children, ref.current)
 }
 
 Portal.propTypes = {
   children: PropTypes.node.isRequired
 }
+
+export default Portal

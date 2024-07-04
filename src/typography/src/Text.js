@@ -18,13 +18,13 @@ const Text = memo(
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
-    const textStyle = useStyleConfig('Text', { size }, emptyObject, emptyObject)
+    const themedProps = useStyleConfig('Text', { size }, emptyObject, emptyObject)
 
     return (
       <Box
         is="span"
         ref={ref}
-        {...textStyle}
+        {...themedProps}
         fontFamily={themedFontFamily}
         color={themedColor}
         className={className}
@@ -42,9 +42,9 @@ Text.propTypes = {
 
   /**
    * Size of the text style.
-   * Can be: 300, 400, 500, 600.
+   * Can be: 300, 400, 500, 600, `small`, `medium`, `large`.
    */
-  size: PropTypes.oneOf([300, 400, 500, 600]),
+  size: PropTypes.oneOf([300, 400, 500, 600, 'small', 'medium', 'large']),
 
   /**
    * Font family.

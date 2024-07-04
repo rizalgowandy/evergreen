@@ -26,15 +26,27 @@ const FormField = memo(
           <FormFieldLabel htmlFor={labelFor} isAstrixShown={isRequired} {...labelProps}>
             {label}
           </FormFieldLabel>
-          {typeof description === 'string' ? <FormFieldDescription>{description}</FormFieldDescription> : description}
+          {typeof description === 'string' ? (
+            <FormFieldDescription id={labelFor + '__description'}>{description}</FormFieldDescription>
+          ) : (
+            description
+          )}
         </Box>
         {children}
         {typeof validationMessage === 'string' ? (
-          <FormFieldValidationMessage marginTop={8}>{validationMessage}</FormFieldValidationMessage>
+          <FormFieldValidationMessage marginTop={8} id={labelFor + '__validation-message'}>
+            {validationMessage}
+          </FormFieldValidationMessage>
         ) : (
           validationMessage
         )}
-        {typeof hint === 'string' ? <FormFieldHint marginTop={6}>{hint}</FormFieldHint> : hint}
+        {typeof hint === 'string' ? (
+          <FormFieldHint marginTop={6} id={labelFor + '__hint'}>
+            {hint}
+          </FormFieldHint>
+        ) : (
+          hint
+        )}
       </Box>
     )
   })
@@ -44,7 +56,7 @@ FormField.propTypes = {
   /**
    * The label used above the input element.
    */
-  label: PropTypes.node.isRequired,
+  label: PropTypes.node,
 
   /**
    * Passed on the label as a htmlFor prop.

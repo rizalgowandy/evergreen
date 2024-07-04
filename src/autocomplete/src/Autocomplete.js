@@ -48,7 +48,7 @@ const AutocompleteItems = ({
   itemsFilter = itemsFilter || fuzzyFilter(itemToString)
   const items = isFilterDisabled || inputValue.trim() === '' ? originalItems : itemsFilter(originalItems, inputValue)
 
-  if (items.length === 0) return null
+  if (items.length <= 0) return null
 
   // Pass the actual DOM ref to downshift, this fixes touch support
   const menuProps = getMenuProps()
@@ -62,33 +62,31 @@ const AutocompleteItems = ({
           </Text>
         </Pane>
       )}
-      {items.length > 0 && (
-        <VirtualList
-          width="100%"
-          height={Math.min(items.length * itemSize, popoverMaxHeight)}
-          itemSize={itemSize}
-          itemCount={items.length}
-          scrollToIndex={highlightedIndex || 0}
-          overscanCount={3}
-          scrollToAlignment="auto"
-          renderItem={({ index, style }) => {
-            const item = items[index]
-            const itemString = itemToString(item)
+      <VirtualList
+        width="100%"
+        height={Math.min(items.length * itemSize, popoverMaxHeight)}
+        itemSize={itemSize}
+        itemCount={items.length}
+        scrollToIndex={highlightedIndex || 0}
+        overscanCount={3}
+        scrollToAlignment="auto"
+        renderItem={({ index, style }) => {
+          const item = items[index]
+          const itemString = itemToString(item)
 
-            return renderItem(
-              getItemProps({
-                item,
-                key: itemString,
-                index,
-                style,
-                children: itemString,
-                isSelected: itemToString(selectedItem) === itemString,
-                isHighlighted: highlightedIndex === index
-              })
-            )
-          }}
-        />
-      )}
+          return renderItem(
+            getItemProps({
+              item,
+              key: itemString,
+              index,
+              style,
+              children: itemString,
+              isSelected: itemToString(selectedItem) === itemString,
+              isHighlighted: highlightedIndex === index
+            })
+          )
+        }}
+      />
     </Pane>
   )
 }
@@ -116,10 +114,9 @@ const Autocomplete = memo(
     const [targetRef, setTargetRef] = useState()
 
     useEffect(() => {
-      if (targetRef) {
-        setTargetWidth(targetRef.getBoundingClientRect().width)
-      }
-    }, [targetRef])
+      const boundingWidth = targetRef?.getBoundingClientRect().width
+      setTargetWidth(boundingWidth)
+    }, [targetRef, setTargetWidth, props.items.length, props.id])
 
     const stateReducer = useCallback(
       (state, changes) => {
@@ -134,7 +131,7 @@ const Autocomplete = memo(
           return {
             ...changes,
             selectedItem: changes.selectedItem || state.inputValue,
-            inputValue: state.inputValue
+            inputValue: changes.selectedItem || state.inputValue
           }
         }
 

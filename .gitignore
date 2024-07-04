@@ -1,6 +1,7 @@
 *.log
 node_modules
 .DS_Store
+coverage
 /commonjs/
 /esm/
 /umd/
@@ -11,3 +12,5 @@ node_modules
 /.idea/
 /storybook-static/
 .eslintcache
+/codemods/dist
+/types/

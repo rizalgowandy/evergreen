@@ -17,9 +17,9 @@ const Paragraph = memo(
     const themedFontFamily = fontFamilies[fontFamily] || fontFamily
     const themedColor = colors[color] || (colors.text && colors.text[color]) || color
 
-    const textStyle = useStyleConfig('Paragraph', { size }, emptyObject, emptyObject)
+    const themedProps = useStyleConfig('Paragraph', { size }, emptyObject, emptyObject)
 
-    return <Box is="p" ref={ref} {...textStyle} fontFamily={themedFontFamily} color={themedColor} {...restProps} />
+    return <Box is="p" ref={ref} {...themedProps} fontFamily={themedFontFamily} color={themedColor} {...restProps} />
   })
 )
 
@@ -31,9 +31,9 @@ Paragraph.propTypes = {
 
   /**
    * Size of the text style.
-   * Can be: 300, 400, 500.
+   * Can be: 300, 400, 500, `small`, `medium`, `large`.
    */
-  size: PropTypes.oneOf([300, 400, 500]),
+  size: PropTypes.oneOf([300, 400, 500, 'small', 'medium', 'large']),
 
   /**
    * Font family.

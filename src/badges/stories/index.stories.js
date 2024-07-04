@@ -1,6 +1,6 @@
 import React from 'react'
+import { faker } from '@faker-js/faker'
 import { storiesOf } from '@storybook/react'
-import faker from 'faker'
 import Box from 'ui-box'
 import { Badge, Pill } from '..'
 import { ThemeConsumer } from '../../theme'
@@ -29,7 +29,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {Object.keys(theme.tokens.fills).map(color => (
+          {Object.keys(theme.fills).map(color => (
             <Box key={color}>
               <Badge color={color} {...baseStyles}>
                 {color}
@@ -47,7 +47,7 @@ storiesOf('badges', module)
     <ThemeConsumer>
       {theme => (
         <Box style={{ ...wrapperStyles }}>
-          {Object.keys(theme.tokens.fills).map((color, index) => {
+          {Object.keys(theme.fills).map((color, index) => {
             return (
               <Box key={color} display="flex" flexDirection="column" alignItems="center">
                 <Pill color={color} {...baseStyles}>
